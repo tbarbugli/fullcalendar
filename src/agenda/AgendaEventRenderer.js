@@ -419,7 +419,6 @@ function AgendaEventRenderer() {
 			stop: function(ev, ui) {
 				hoverListener.stop();
 				clearOverlays();
-				trigger('eventDragStop', eventElement, event, ev, ui);
 				if (revert) {
 					// hasn't moved or is out of bounds (draggable has already reverted)
 					resetElement();
@@ -436,6 +435,7 @@ function AgendaEventRenderer() {
 					}
 					eventDrop(this, event, dayDelta, minuteDelta, allDay, ev, ui);
 				}
+				trigger('eventDragStop', eventElement, event, ev, ui);
 				//setOverflowHidden(false);
 			}
 		});
@@ -512,7 +512,6 @@ function AgendaEventRenderer() {
 			stop: function(ev, ui) {
 				var cell = hoverListener.stop();
 				clearOverlays();
-				trigger('eventDragStop', eventElement, event, ev, ui);
 				if (cell && (dayDelta || minuteDelta || allDay)) {
 					// changed!
 					eventDrop(this, event, dayDelta, allDay ? 0 : minuteDelta, allDay, ev, ui);
@@ -524,6 +523,7 @@ function AgendaEventRenderer() {
 					updateTimeText(0);
 					showEvents(event, eventElement);
 				}
+				trigger('eventDragStop', eventElement, event, ev, ui);
 			}
 		});
 		function updateTimeText(minuteDelta) {

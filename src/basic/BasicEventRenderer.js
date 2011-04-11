@@ -125,13 +125,13 @@ function BasicEventRenderer() {
 			stop: function(ev, ui) {
 				hoverListener.stop();
 				clearOverlays();
-				trigger('eventDragStop', eventElement, event, ev, ui);
 				if (dayDelta) {
 					eventDrop(this, event, dayDelta, 0, event.allDay, ev, ui);
 				}else{
 					eventElement.css('filter', ''); // clear IE opacity side-effects
 					showEvents(event, eventElement);
 				}
+				trigger('eventDragStop', eventElement, event, ev, ui);
 				//setOverflowHidden(false);
 			}
 		});
